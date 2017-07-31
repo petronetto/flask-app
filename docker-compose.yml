@@ -1,0 +1,26 @@
+version: '3'
+services:
+######################################
+# Applications Container
+######################################
+  app:
+    container_name: app-flask
+    build: 
+      context: ./app
+    links: 
+      - mongo
+    volumes:
+      - ./app:/app
+    ports:
+      - 27017:27017
+######################################
+# MongoDB Container
+######################################
+  mongo:
+    container_name: mongo
+    build: 
+      context: mongo
+    volumes:
+      - ./mongo/data:/data
+    ports:
+      - 27017:27017
