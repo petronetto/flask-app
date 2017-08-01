@@ -1,1 +1,4 @@
-`gunicorn -w 4 -b 127.0.0.1:4000 main:app`
+# Flask Mongo RESTful API
+
+## Running
+`./run`
