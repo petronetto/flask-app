@@ -1,23 +1,15 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 from flask_mongoengine import MongoEngine
-from users.models import User
 
-app = Flask(__name__)
+mongo = MongoEngine()
 
-app.config.from_pyfile('config.py')
-mongo = MongoEngine(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_pyfile('settings.py')
 
-@app.route('/user', methods=['GET'])
-def create_users():
-    user = User(
-        username="petronetto",
-        password="secret",
-        email="juliano@petronetto.com.br",
-        first_name="Juliano",
-        last_name="Petronetto"
-    )
-    return jsonify({'user': user})
+    mongo.init_app(app)
 
-@app.route('/test/<int:id>', methods=['PUT'])
-def test_post(id):
-    return jsonify({'value': id, 'method': 'PUT', 'request': request.json})
+    from user.handlers import user_router
+    app.register_blueprint(user_router)
+
+    return app
