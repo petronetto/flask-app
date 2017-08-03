@@ -7,17 +7,18 @@ services:
     container_name: app-flask
     build: 
       context: ./app
+    command: gunicorn -b 0.0.0.0:5000 app.main:app --reload
     links: 
-      - mongo
+      - mongodb
     volumes:
       - ./app:/app
     ports:
-      - 27017:27017
+      - 5000:5000
 ######################################
 # MongoDB Container
 ######################################
-  mongo:
-    container_name: mongo
+  mongodb:
+    container_name: mongodb
     build: 
       context: mongo
     volumes:

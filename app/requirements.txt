@@ -1,5 +1,0 @@
-Flask
-Flask-Script
-flask-mongoengine
-Flask-WTF
-py-bcrypt

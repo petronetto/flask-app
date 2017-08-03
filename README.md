@@ -1,4 +1,4 @@
 # Flask Mongo RESTful API
 
 ## Running
-`./run`
+`docker-compose-up -d`

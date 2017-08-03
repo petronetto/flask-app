@@ -5,11 +5,11 @@ apk add --no-cache mongodb && \
 rm /usr/bin/mongoperf
 
 VOLUME /data/db
-VOLUME /log
+EXPOSE 27017 28017
 
 COPY run.sh /root
-COPY mongod.conf /root
+
+RUN chmod +x /root/run.sh
 
 ENTRYPOINT [ "/root/run.sh" ]
-
-CMD [ "mongod", "-f", "/root/mongod.conf" ]
+CMD [ "mongod" ]

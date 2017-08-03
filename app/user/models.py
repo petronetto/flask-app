@@ -1,6 +1,6 @@
-from main import mongo
+from app.main import mongo
 
-from utilities.common import utc_now_ts as now
+from app.utilities.common import utc_now_ts as now
 
 class User(mongo.Document):
     username = mongo.StringField(required=True, unique=True)
@@ -13,3 +13,4 @@ class User(mongo.Document):
     meta = {
         'indexes': ['username', 'email', '-created']
     }
+    
