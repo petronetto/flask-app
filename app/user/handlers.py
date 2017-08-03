@@ -3,15 +3,11 @@ from .models import User
 
 user_router = Blueprint('user_router', __name__)
 
-@user_router.route('/', methods=['GET'])
-def index():
-    return make_response(jsonify({'server': 'Im alive'}), 200)
-
 @user_router.route('/users', methods=['GET', 'POST'])
 def user_routes():
     if request.method == 'GET':
         return get_users()
-    else:
+    if request.method == 'POST':
         return create_users()
 
 def get_users():
