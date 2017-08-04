@@ -3,7 +3,7 @@
 
 from wtforms.validators import ValidationError
 from flask import Blueprint, jsonify, make_response
-from mongoengine.errors import DoesNotExist
+from mongoengine.errors import DoesNotExist, NotUniqueError
 from werkzeug.exceptions import MethodNotAllowed
 
 errors = Blueprint('errors', __name__)
@@ -36,6 +36,16 @@ def handle_validation_errors(error):
         'error': {
             'type': error.__class__.__name__,
             'message': error.args
+        }
+    }
+    return make_response(jsonify(response), 422)
+
+@errors.app_errorhandler(NotUniqueError)
+def handle_not_unique(error):
+    response = {
+        'error': {
+            'type': error.__class__.__name__,
+            'message': error.args[0]
         }
     }
     return make_response(jsonify(response), 422)

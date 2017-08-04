@@ -2,7 +2,7 @@ from flask import jsonify, make_response
 from flask_restful import Resource
 from wtforms.validators import ValidationError
 from .model import User
-from .forms import CreateUserForm
+from .forms import CreateUserForm, UpdateUserForm
 
 class GetUser(Resource):
     def get(self, user_id):
@@ -25,10 +25,20 @@ class CreateUsers(Resource):
                 first_name = form.first_name.data,
                 last_name  = form.last_name.data,
             )
+            user.save()
             return make_response(jsonify(user), 201)
         raise ValidationError(form.errors)
 
 class UpdateUser(Resource):
-    def get(self, user_id):
+    def put(self, user_id):
         user = User.objects.get(id=user_id)
-        return make_response(jsonify(user), 200)
+        form = UpdateUserForm(csrf_enabled=False)
+        if form.validate_on_submit():
+            user.update(
+                username   = form.username.data,
+                email      = form.email.data,
+                first_name = form.first_name.data,
+                last_name  = form.last_name.data,
+            )
+            return make_response(jsonify(user), 200)
+        raise ValidationError(form.errors)
