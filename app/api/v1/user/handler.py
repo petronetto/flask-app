@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from wtforms.validators import ValidationError
-from app.helpers.utils import make_api_response
+from app.api.common.utils import make_api_response
 from .model import User, user_schema, users_schema
 from .forms import CreateUserForm, UpdateUserForm
 
