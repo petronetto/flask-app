@@ -16,7 +16,7 @@ api = Api(app, errors=errors)
 ########################################
 # Routes
 ########################################
-from .user.handler import CreateUsers, GetUser, GetUsers, UpdateUser
+from .api.v1.user.handler import CreateUsers, GetUser, GetUsers, UpdateUser
 api.add_resource(GetUser, '/users/<string:user_id>')
 api.add_resource(GetUsers, '/users')
 api.add_resource(CreateUsers, '/users')
