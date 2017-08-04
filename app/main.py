@@ -1,15 +1,16 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
+from flask_wtf import CSRFProtect
 from flask_restful import Api
 from app.common.errors import errors
 
 app = Flask(__name__)
 app.config.from_pyfile('.env')
 app.register_blueprint(errors)
+csrf = CSRFProtect(app)
 
 mongo = MongoEngine()
 mongo.init_app(app)
-
 api = Api(app, errors=errors)
 
 ########################################

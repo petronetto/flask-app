@@ -4,7 +4,7 @@
 from wtforms.validators import ValidationError
 from flask import Blueprint, jsonify, make_response
 from mongoengine.errors import DoesNotExist, NotUniqueError
-from werkzeug.exceptions import MethodNotAllowed
+from werkzeug.exceptions import NotFound, MethodNotAllowed
 
 errors = Blueprint('errors', __name__)
 
@@ -19,7 +19,7 @@ def handle_unexpected_error(error):
                 'message': message
             }
         }
-        return make_response(jsonify(response), 400)
+        return make_response(jsonify(response), 500)
     if error.__class__.__name__ is None:
         response = {
             'error': {
@@ -60,6 +60,17 @@ def handle_method_not_allowed(error):
         }
     }
     return make_response(jsonify(response), 405)
+
+# # Not Found
+@errors.app_errorhandler(NotFound)
+def handle_not_found(error):
+    response = {
+        'error': {
+            'type': 'NotFound',
+            'message': 'The requested URL was not found on the server'
+        }
+    }
+    return make_response(jsonify(response), 404)
 
 # Resource does not exists
 @errors.app_errorhandler(DoesNotExist)

@@ -1,22 +1,22 @@
-from flask import jsonify, make_response
 from flask_restful import Resource
 from wtforms.validators import ValidationError
-from .model import User
+from app.helpers.utils import make_api_response
+from .model import User, user_schema, users_schema
 from .forms import CreateUserForm, UpdateUserForm
 
 class GetUser(Resource):
     def get(self, user_id):
         user = User.objects.get(id=user_id)
-        return make_response(jsonify(user), 200)
+        return make_api_response(user_schema, user)
 
 class GetUsers(Resource):
     def get(self):
         users = User.objects.all()
-        return make_response(jsonify(users), 200)
+        return make_api_response(users_schema, users)
 
 class CreateUsers(Resource):
     def post(self):
-        form = CreateUserForm(csrf_enabled=False)
+        form = CreateUserForm()
         if form.validate_on_submit():
             user = User(
                 username   = form.username.data,
@@ -26,13 +26,13 @@ class CreateUsers(Resource):
                 last_name  = form.last_name.data,
             )
             user.save()
-            return make_response(jsonify(user), 201)
+            return make_api_response(user_schema, user, 201)
         raise ValidationError(form.errors)
 
 class UpdateUser(Resource):
     def put(self, user_id):
         user = User.objects.get(id=user_id)
-        form = UpdateUserForm(csrf_enabled=False)
+        form = UpdateUserForm()
         if form.validate_on_submit():
             user.update(
                 username   = form.username.data,
@@ -40,5 +40,5 @@ class UpdateUser(Resource):
                 first_name = form.first_name.data,
                 last_name  = form.last_name.data,
             )
-            return make_response(jsonify(user), 200)
+            return make_api_response(user_schema, user)
         raise ValidationError(form.errors)
