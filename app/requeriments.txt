@@ -5,3 +5,4 @@ Flask-RESTful==0.3.6
 gunicorn==19.7.1
 marshmallow==3.0.0b2
 python-dotenv==0.6.4
+blinker==1.4

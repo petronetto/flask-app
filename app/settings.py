@@ -10,4 +10,3 @@ DEBUG        = os.environ.get("DEBUG")
 MONGODB_DB   = os.environ.get("MONGODB_DB")
 MONGODB_HOST = os.environ.get("MONGODB_HOST")
 MONGODB_PORT = os.environ.get("MONGODB_PORT")
-

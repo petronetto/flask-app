@@ -67,7 +67,7 @@ def handle_not_found(error):
     response = {
         'error': {
             'type': 'NotFound',
-            'message': 'The requested URL was not found on the server'
+            'message': 'The requested resource was not found'
         }
     }
     return make_response(jsonify(response), 404)
