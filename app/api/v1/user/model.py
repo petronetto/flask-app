@@ -29,6 +29,9 @@ class User(mongo.Document):
 signals.pre_save.connect(User.pre_save, sender=User)
 
 class UserSchema(Schema):
+    class Meta(object):
+        ordered=True
+
     id         = fields.Str()
     username   = fields.Str()
     email      = fields.Str()
