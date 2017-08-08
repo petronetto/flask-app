@@ -25,6 +25,7 @@ class User(mongo.Document):
     meta = {
         'indexes': ['username', 'email', '-created_at']
     }
+
 # Rodar os métodos antes de salvar
 signals.pre_save.connect(User.pre_save, sender=User)
 
@@ -39,6 +40,7 @@ class UserSchema(Schema):
     last_name  = fields.Str()
     created_at = fields.Method('format_created_at')
     updated_at = fields.Method('format_updated_at')
+
 
     def format_created_at(self, obj):
         return format_date(obj.created_at, '%Y-%m-%d %H:%M:%S')

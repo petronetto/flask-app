@@ -4,7 +4,7 @@
 from wtforms.validators import ValidationError
 from flask import Blueprint, jsonify, make_response
 from mongoengine.errors import DoesNotExist, NotUniqueError
-from werkzeug.exceptions import NotFound, MethodNotAllowed
+from werkzeug.exceptions import NotFound, MethodNotAllowed, Unauthorized
 
 errors = Blueprint('errors', __name__)
 
@@ -82,3 +82,14 @@ def handle_does_not_exist(error):
         }
     }
     return make_response(jsonify(response), 404)
+
+# Unauthorized
+@errors.app_errorhandler(Unauthorized)
+def handle_unauthorized(error):
+    response = {
+        'error': {
+            'type': error.__class__.__name__,
+            'message': error.description
+        }
+    }
+    return make_response(jsonify(response), 401)

@@ -1,11 +1,13 @@
 from flask_restful import Resource
 from wtforms.validators import ValidationError
+from flask_jwt import jwt_required
 from app.api.common.utils import make_api_response
 from app.helpers.utils import utc_now_ts as now
 from .model import User, user_schema, users_schema
 from .forms import CreateUserForm, UpdateUserForm
 
 class GetUser(Resource):
+    @jwt_required()
     def get(self, user_id):
         user = User.objects.get_or_404(id=user_id)
         return make_api_response(user_schema, user)
