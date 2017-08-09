@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required
 from wtforms.validators import ValidationError
 from app.api.common.utils import make_api_response
 from app.helpers.utils import utc_now_ts as now
-from .model import User, user_schema, users_schema
+from .models import User, user_schema, users_schema
 from .forms import CreateUserForm, UpdateUserForm
 
 class GetUser(Resource):

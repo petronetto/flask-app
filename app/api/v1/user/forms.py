@@ -4,8 +4,7 @@ from flask_wtf import FlaskForm as Form
 from wtforms import validators, StringField, PasswordField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import ValidationError
-
-from .model import User
+from .models import User
 
 class BaseUserForm(Form):
     first_name = StringField('First Name', [validators.DataRequired()])

@@ -1,7 +1,7 @@
 from flask_restful import Api
 from app.common.errors import errors
-from .api.v1.user.handler import CreateUsers, GetUser, GetUsers, UpdateUser, DeleteUser
-from .api.v1.auth.handler import Login, Refresh
+from app.api.v1.user.handlers import CreateUsers, GetUser, GetUsers, UpdateUser, DeleteUser
+from app.api.v1.auth.handlers import Login, Refresh
 
 def init_routes(app):
 
