@@ -1,4 +1,3 @@
-
 """Application error handlers."""
 
 from wtforms.validators import ValidationError

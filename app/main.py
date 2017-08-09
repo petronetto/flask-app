@@ -1,7 +1,6 @@
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from .routes import init_routes
-from app.api.common.auth import authenticate, identity
-from flask_jwt import JWT
 
 # Criando instancia da aplicação
 app = Flask(__name__)
@@ -9,7 +8,8 @@ app = Flask(__name__)
 # Carregando as configs
 app.config.from_pyfile('settings.py')
 
-JWT(app, authenticate, identity)
+# Setup the Flask-JWT-Extended extension
+JWTManager(app)
 
 # Iniciando as rotas
 init_routes(app)

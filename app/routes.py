@@ -1,6 +1,7 @@
-from .api.v1.user.handler import CreateUsers, GetUser, GetUsers, UpdateUser, DeleteUser
 from flask_restful import Api
 from app.common.errors import errors
+from .api.v1.user.handler import CreateUsers, GetUser, GetUsers, UpdateUser, DeleteUser
+from .api.v1.auth.handler import Login, Refresh
 
 def init_routes(app):
 
@@ -8,6 +9,9 @@ def init_routes(app):
     app.register_blueprint(errors)
 
     api = Api(app, errors=errors)
+
+    api.add_resource(Login, '/login')
+    api.add_resource(Refresh, '/refresh')
 
     api.add_resource(GetUser, '/users/<string:user_id>')
 
