@@ -1,0 +1,9 @@
+[
+    {
+        "username": "admin",
+        "email": "admin@admin.com",
+        "password": "pbkdf2:sha256:50000$A8UgwMMa$8527d05c8c28ce604a082efe9d764b200da3fa71c671c41c5123acf81b4d8205",
+        "first_name": "Admin",
+        "last_name": "User"
+    }
+]

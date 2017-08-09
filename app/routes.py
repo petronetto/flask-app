@@ -8,7 +8,7 @@ def init_routes(app):
     # Carregando os errors handlers customizados
     app.register_blueprint(errors)
 
-    api = Api(app, errors=errors)
+    api = Api(app, errors=errors, prefix='/api/v1')
 
     api.add_resource(Login, '/login')
     api.add_resource(Refresh, '/refresh')

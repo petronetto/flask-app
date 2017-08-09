@@ -1,4 +1,17 @@
 # Flask Mongo RESTful API
 
 ## Running
-`docker-compose-up -d`
+Build containers
+`docker-compose-up -d --build`
+
+Import the first user to MongoDB
+```
+docker exec -it mongodb mongoimport --db flask --collection user --type json --file /init.json --jsonArray
+```
+
+Get token
+```
+curl -XPOST -H "Content-type: application/json" -d '{"username": "admin","password": "admin"}' http://0.0.0.0:5000/api/v1/login
+```
+
+Enjoy :)

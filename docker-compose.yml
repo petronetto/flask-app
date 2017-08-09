@@ -23,5 +23,6 @@ services:
       context: mongo
     volumes:
       - ./mongo/data:/data
+      - ./mongo/init.json:/init.json
     ports:
       - 27017:27017
