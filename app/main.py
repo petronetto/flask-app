@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_jwt_extended import JWTManager
+from flask_mongoengine import MongoEngine
 from .routes import init_routes
-from .database import mongo
 
 def create_app(**config_overrides):
     # Criando instancia da aplicação
@@ -9,13 +9,15 @@ def create_app(**config_overrides):
 
     # Carregando as configs
     app.config.from_pyfile('settings.py')
-
     app.config.update(config_overrides)
 
+    # Setup MongoEngine
+    mongo = MongoEngine()
     mongo.init_app(app)
 
     # Setup the Flask-JWT-Extended extension
-    JWTManager(app)
+    jwt = JWTManager()
+    jwt.init_app(app)
 
     # Iniciando as rotas
     init_routes(app)

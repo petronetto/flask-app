@@ -17,7 +17,7 @@ class Login(Resource):
             if user and check_password(user.password, password):
                 u = user_schema.dump(user)
                 token = {
-                    'access_token': create_access_token(identity=u.data)
+                    'access_token': create_access_token(identity=u.data['id'])
                 }
                 return make_response(jsonify(token), 200)
             raise Unauthorized('Invalid credentials')
