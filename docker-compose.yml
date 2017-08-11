@@ -7,7 +7,7 @@ services:
     container_name: app-flask
     build: 
       context: ./app
-    command: gunicorn -b 0.0.0.0:5000 app.main:app --reload
+    command: gunicorn -b 0.0.0.0:5000 app.wsgi:app --reload
     links: 
       - mongodb
     volumes:
