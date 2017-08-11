@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+python -W ignore app/tests.py
