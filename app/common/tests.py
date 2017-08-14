@@ -1,6 +1,6 @@
 from unittest import TestCase
 from mongoengine.connection import _get_db
-from flask_jwt_extended import JWTManager, create_access_token
+from flask_jwt_extended import create_access_token
 from app.main import create_app as create_app_base
 from app.api.v1.user.models import User, user_schema
 
@@ -17,9 +17,6 @@ class TestBase(TestCase):
     def setUp(self):
         self.app_factory = self.create_app()
         self.app = self.app_factory.test_client()
-        with self.app_factory.app_context():
-            self.jwt_manager = JWTManager(self.app_factory)
-
 
     def tearDown(self):
         db = _get_db()
