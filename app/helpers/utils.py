@@ -11,8 +11,7 @@ def hash_password(password):
 def check_password(user_hashed_password, user_password):
     if check_password_hash(user_hashed_password, user_password):
         return True
-    else:
-        return False
+    return False
 
 def format_date(date, dt_format):
     return datetime.datetime.fromtimestamp(int(date)).strftime(dt_format)

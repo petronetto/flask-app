@@ -1,0 +1,38 @@
+Logs user into the system
+Returns an access token when login is successful
+---
+tags:
+  - auth
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    description: 'Login payload'
+    required: true
+    schema:
+      $ref: '#/definitions/Login'
+definitions:
+  Login:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  AccessToken:
+    type: object
+    properties:
+      access_token:
+        type: string
+responses:
+  200:
+    description: An JWT Token
+    schema:
+      $ref: '#/definitions/AccessToken'
+    examples:
+      access_token: 'eyJ0eXAiOiJKV1Q...'
+  400:
+    description: 'Invalid username/password supplied'
