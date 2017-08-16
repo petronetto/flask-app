@@ -9,7 +9,7 @@ def create_app(**config_overrides):
     app = Flask(__name__)
 
     # Carregando as configs
-    app.config.from_pyfile('settings.py')
+    app.config.from_pyfile('settings.cfg')
     app.config.update(config_overrides)
 
     # Setup MongoEngine
