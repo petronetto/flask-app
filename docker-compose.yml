@@ -8,12 +8,14 @@ services:
     build: 
       context: ./app
     command: gunicorn -b 0.0.0.0:5000 app.wsgi:app --reload
+    environment:
+      PORT: 5000
     links: 
       - mongodb
     volumes:
       - ./app:/app
     ports:
-      - 5000:5000
+      - 5000:7000
 ######################################
 # MongoDB Container
 ######################################
