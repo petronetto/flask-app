@@ -14,4 +14,8 @@ Get token
 curl -XPOST -H "Content-type: application/json" -d '{"username": "admin","password": "admin"}' http://0.0.0.0:5000/api/v1/login
 ```
 
+## API documentation
+Access `http://0.0.0.0:5000/apidocs/`
+
+
 Enjoy :)

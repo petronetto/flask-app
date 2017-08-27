@@ -3,11 +3,13 @@ from app.helpers.utils import check_password
 from flask import request, jsonify, make_response
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from flask_restful import Resource
+from flasgger import swag_from
 from wtforms.validators import ValidationError
 from werkzeug.exceptions import Unauthorized
 from .forms import LoginForm
 
 class Login(Resource):
+    @swag_from('login.yml')
     def post(self):
         form = LoginForm()
         if form.validate_on_submit():
