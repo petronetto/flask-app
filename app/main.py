@@ -1,15 +1,20 @@
+"""
+Main file to creates an app instance
+"""
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_mongoengine import MongoEngine
 from flasgger import Swagger
-from .routes import init_routes
 
 def create_app(**config_overrides):
-    # Criando instancia da aplicação
+    """
+    Creates an app instance
+    """
+    # App instance
     app = Flask(__name__)
 
-    # Carregando as configs
-    app.config.from_pyfile('settings.cfg')
+    # Loading configs
+    app.config.from_pyfile('settings.py')
     app.config.update(config_overrides)
 
     # Setup MongoEngine
@@ -44,7 +49,8 @@ def create_app(**config_overrides):
     swagger = Swagger(template=template)
     swagger.init_app(app)
 
-    # Iniciando as rotas
+    # Starting routes
+    from .routes import init_routes
     init_routes(app)
 
     return app

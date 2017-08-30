@@ -12,10 +12,11 @@ services:
       PORT: 5000
     links: 
       - mongodb
+      - redis
     volumes:
       - ./app:/app
     ports:
-      - 5000:7000
+      - 8000:5000
 ######################################
 # MongoDB Container
 ######################################
@@ -27,4 +28,16 @@ services:
       - ./mongo/data:/data
       - ./mongo/init.json:/init.json
     ports:
-      - 27017:27017
+      - 7017:27017
+######################################
+# Redis Container
+######################################
+  redis:
+    container_name: redis
+    image: redis:4.0.1-alpine
+    volumes:
+      - ./redis/data:/data
+    ports:
+      - 6379:6379
+    links: 
+      - mongodb
