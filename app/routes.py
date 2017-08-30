@@ -1,13 +1,12 @@
 """
 Application routes
 """
-from flask_restful import Api
 
 def init_routes(app):
     """
     Initialize the routes
     """
-    print('Initializing application routes')
+    from flask_restful import Api
     # Loading custom error handlers
     from app.common.errors import errors
     app.register_blueprint(errors)

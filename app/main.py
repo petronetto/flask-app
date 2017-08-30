@@ -3,8 +3,8 @@ Main file to creates an app instance
 """
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from flask_mongoengine import MongoEngine
 from flasgger import Swagger
+from .database import mongo
 
 def create_app(**config_overrides):
     """
@@ -18,7 +18,6 @@ def create_app(**config_overrides):
     app.config.update(config_overrides)
 
     # Setup MongoEngine
-    mongo = MongoEngine()
     mongo.init_app(app)
 
     # Setup the Flask-JWT-Extended extension

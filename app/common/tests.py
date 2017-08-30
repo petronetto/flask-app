@@ -1,3 +1,6 @@
+"""
+Config and helpers for application tests
+"""
 from unittest import TestCase
 from mongoengine.connection import _get_db
 from flask_jwt_extended import create_access_token

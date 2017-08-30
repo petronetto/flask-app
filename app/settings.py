@@ -2,7 +2,6 @@
 Load application configs vars
 """
 from os import environ as env
-print('Loading environment variables')
 
 SECRET_KEY             = env.get('SECRET_KEY')
 MONGODB_DB             = env.get('MONGODB_DB')

@@ -10,7 +10,7 @@ services:
     # command: gunicorn -b 0.0.0.0:5000 app.wsgi:app --reload
     environment:
       PORT: 5000
-    links: 
+    links:
       - mongodb
       - redis
     volumes:
@@ -28,7 +28,7 @@ services:
       - ./mongo/data:/data
       - ./mongo/init.json:/init.json
     ports:
-      - 7017:27017
+      - 27017:27017
 ######################################
 # Redis Container
 ######################################

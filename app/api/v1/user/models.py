@@ -1,9 +1,13 @@
+"""
+User model
+"""
 from app.helpers.utils import utc_now_ts as now, hash_password, format_date
 from app.database import mongo
 from marshmallow import Schema, fields
 from mongoengine import signals
 
 class User(mongo.Document):
+    """ User model """
     # pylint: disable=E1101
     username   = mongo.StringField(required=True, unique=True)
     password   = mongo.StringField(required=True)
@@ -17,7 +21,11 @@ class User(mongo.Document):
     @classmethod
     # pylint: disable=W0613
     def pre_save(cls, sender, document, **kwargs):
-    # pylint: enable=W0613
+        """
+        Before save, lower case the username, enail
+        and hash the password
+        """
+        # pylint: enable=W0613
         document.username = document.username.lower()
         document.email    = document.email.lower()
         document.password = hash_password(document.password)
@@ -30,7 +38,9 @@ class User(mongo.Document):
 signals.pre_save.connect(User.pre_save, sender=User)
 
 class UserSchema(Schema):
+    """ User Schema """
     class Meta(object):
+        """ Display data ordered """
         ordered=True
 
     id         = fields.Str()
@@ -42,9 +52,11 @@ class UserSchema(Schema):
     updated_at = fields.Method('format_updated_at')
 
     def format_created_at(self, obj):
+        """ Format the date """
         return format_date(obj.created_at, '%Y-%m-%d %H:%M:%S')
 
     def format_updated_at(self, obj):
+        """ Format the date """
         return format_date(obj.updated_at, '%Y-%m-%d %H:%M:%S')
 
 user_schema = UserSchema()

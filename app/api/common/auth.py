@@ -13,7 +13,6 @@ def check_auth(username, password):
     password combination is valid.
     """
     user = User.objects(username=username).first()
-    print(user)
     if user and check_password(user.password, password):
         return True
     return False
