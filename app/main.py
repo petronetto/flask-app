@@ -8,13 +8,20 @@ from .database import mongo
 
 def create_app(**config_overrides):
     """
-    Creates an app instance
+    Create a Flask application using the app factory pattern.
+
+    :param config_overrides: The application configs
+    :return: Flask app
     """
     # App instance
-    app = Flask(__name__)
+    app = Flask(__name__,
+                static_folder='web/static',
+                template_folder='web/template',
+                instance_relative_config=True)
 
     # Loading configs
-    app.config.from_pyfile('settings.py')
+    app.config.from_object('app.config.settings')
+    app.config.from_pyfile('settings.py', silent=True)
     app.config.update(config_overrides)
 
     # Setup MongoEngine
@@ -49,7 +56,7 @@ def create_app(**config_overrides):
     swagger.init_app(app)
 
     # Starting routes
-    from .routes import init_routes
+    from .routes.api import init_routes
     init_routes(app)
 
     return app

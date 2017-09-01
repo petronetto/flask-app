@@ -2,7 +2,7 @@
 Handle with HTTP requests for auth routes
 """
 from app.api.v1.user.models import User, user_schema
-from app.helpers.utils import check_password
+from app.common.utils import check_password
 from flask import request, jsonify, make_response
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from flask_restful import Resource

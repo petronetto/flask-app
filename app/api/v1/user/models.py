@@ -1,7 +1,7 @@
 """
 User model
 """
-from app.helpers.utils import utc_now_ts as now, hash_password, format_date
+from app.common.utils import utc_now_ts as now, hash_password, format_date
 from app.database import mongo
 from marshmallow import Schema, fields
 from mongoengine import signals

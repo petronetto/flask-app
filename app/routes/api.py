@@ -7,6 +7,8 @@ def init_routes(app):
     Initialize the routes
     """
     from flask_restful import Api
+    from flask import render_template
+
     # Loading custom error handlers
     from app.common.errors import errors
     app.register_blueprint(errors)
@@ -25,3 +27,9 @@ def init_routes(app):
     api.add_resource(CreateUsers, '/users')
     api.add_resource(UpdateUser, '/users/<string:user_id>')
     api.add_resource(DeleteUser, '/users/<string:user_id>')
+
+
+    # Static routes
+    @app.route('/')
+    def hello():
+        return render_template('main.html')

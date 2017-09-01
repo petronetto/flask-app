@@ -5,7 +5,7 @@ from functools import wraps
 from werkzeug.exceptions import Unauthorized
 from flask import request
 from app.api.v1.user.models import User
-from app.helpers.utils import check_password
+from app.common.utils import check_password
 
 def check_auth(username, password):
     """
