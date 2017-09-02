@@ -10,8 +10,8 @@ docker exec -it mongodb mongoimport --db flask --collection user --type json --f
 ```
 
 
-## Building the assets
-`cd app && npm run build`
+## Running local
+`app/start.sh`
 
 Access `http://0.0.0.0:5000`
 
@@ -27,6 +27,8 @@ curl -XPOST -H "Content-type: application/json" -d '{"username": "admin","passwo
 Access `http://0.0.0.0:5000/apidocs/`
 
 
+## Running tests
+`./tests`
 
 
 Enjoy :)
