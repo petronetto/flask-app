@@ -174,8 +174,15 @@ pip-selfcheck.json
 ### VS Code ###
 .vscode
 
-# Local folders
+# Docker bind
 redis
 mongo/data
+
+# NPM
+app/node_modules
+
+# webpack-built files
+app/web/static/build/
+app/web/webpack/manifest.json
 
 # End of https://www.gitignore.io/api/go,vim,macos,python,virtualenv

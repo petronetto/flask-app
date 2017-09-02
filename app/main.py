@@ -14,7 +14,7 @@ def create_app(**config_overrides):
     :return: Flask app
     """
     # App instance
-    app = Flask(__name__,
+    app = Flask(__name__.split('.')[0],
                 static_folder='web/static',
                 template_folder='web/template',
                 instance_relative_config=True)
