@@ -1,6 +1,8 @@
 # Flask Mongo RESTful API
 
 ## Running
+Building assets `npm run build`
+
 Build containers
 `docker-compose-up -d --build`
 

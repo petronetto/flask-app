@@ -3,6 +3,7 @@ Bootstrap the application
 """
 from os import environ
 from os.path import join, dirname
+from .main import create_app
 # from flask.helpers import get_debug_flag
 
 # Loading env vars
@@ -14,7 +15,6 @@ with open(dotenv_path) as f:
         key, value = line.split('=')
         environ[key] = value.strip()
 
-from .main import create_app
 app = create_app()
 
 if __name__ == '__main__':
